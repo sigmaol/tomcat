@@ -235,7 +235,13 @@ public class Http11Processor extends AbstractProcessor {
         }
     }
 
-
+    /**
+     * 构建request
+     * @param socketWrapper The connection to process
+     *
+     * @return
+     * @throws IOException
+     */
     @Override
     public SocketState service(SocketWrapperBase<?> socketWrapper)
         throws IOException {

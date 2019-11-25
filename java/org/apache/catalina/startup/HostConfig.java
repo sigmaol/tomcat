@@ -422,10 +422,11 @@ public class HostConfig implements LifecycleListener {
         File configBase = host.getConfigBaseFile();
         String[] filteredAppPaths = filterAppPaths(appBase.list());
         // Deploy XML descriptors from configBase
+        // 修改xml配置路径的方式部署
         deployDescriptors(configBase, configBase.list());
-        // Deploy WARs
+        // Deploy WARs 部署war包
         deployWARs(appBase, filteredAppPaths);
-        // Deploy expanded folders
+        // Deploy expanded folders 文件夹部署
         deployDirectories(appBase, filteredAppPaths);
 
     }
@@ -710,6 +711,7 @@ public class HostConfig implements LifecycleListener {
 
 
     /**
+     * 部署WAR
      * Deploy WAR files.
      * @param appBase The base path for applications
      * @param files The WARs to deploy
@@ -729,6 +731,8 @@ public class HostConfig implements LifecycleListener {
             if (files[i].equalsIgnoreCase("WEB-INF"))
                 continue;
             File war = new File(appBase, files[i]);
+
+            //识别所有.war的文件, 这也是为什么要用war包
             if (files[i].toLowerCase(Locale.ENGLISH).endsWith(".war") &&
                     war.isFile() && !invalidWars.contains(files[i]) ) {
 

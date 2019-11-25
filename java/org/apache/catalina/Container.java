@@ -75,6 +75,7 @@ import org.apache.juli.logging.Log;
  *
  * @author Craig R. McClanahan
  * @author Remy Maucherat
+ * Wrapper, Host, Engine等都是实现的Container
  */
 public interface Container extends Lifecycle {
 

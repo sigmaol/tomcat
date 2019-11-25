@@ -640,6 +640,7 @@ public class Request implements HttpServletRequest {
     /**
      * @return the <code>ServletRequest</code> for which this object
      * is the facade.  This method must be implemented by a subclass.
+     * 获取门面模式的实例
      */
     public HttpServletRequest getRequest() {
         if (facade == null) {

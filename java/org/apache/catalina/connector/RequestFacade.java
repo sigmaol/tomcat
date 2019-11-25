@@ -50,10 +50,13 @@ import org.apache.tomcat.util.res.StringManager;
  * Facade class that wraps a Coyote request object.
  * All methods are delegated to the wrapped request.
  *
+ * Controller中的HttpServletRequest的最终注入对象就是这个
+ *
  * @author Craig R. McClanahan
  * @author Remy Maucherat
  */
 @SuppressWarnings("deprecation")
+//Facade 门面模式, 包装的Request类, 将Request Tomcat实现的自用方法封装了, 不让其他调用
 public class RequestFacade implements HttpServletRequest {
 
 

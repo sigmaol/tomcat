@@ -66,6 +66,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
+    <!--定义连接器-->
     <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" />
@@ -125,6 +126,10 @@
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
     <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">
     -->
+    <!--
+    应用
+    Catalina这个是engine的名字
+    -->
     <Engine name="Catalina" defaultHost="localhost">
 
       <!--For clustering, please take a look at documentation at:
@@ -145,6 +150,11 @@
                resourceName="UserDatabase"/>
       </Realm>
 
+      <!--
+        域名, 虚拟节点
+        appBase: 应用部署位置
+        unpackWARs: 是否解压WAR包
+      -->
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true">
 
@@ -157,11 +167,18 @@
         <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
+        <!--
+          阀门：记录请求日志
+          实现RequestValve去自己实现阀门, 和Servlet过滤器链类似
+        -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
                prefix="localhost_access_log" suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b" />
 
       </Host>
+
+      <!--可以配置多个, 如果域名是name中的值, 就会进入这个Host中-->
+      <!--      <Host name="order.com"/>-->
     </Engine>
   </Service>
 </Server>

@@ -228,6 +228,7 @@ public final class ApplicationFilterChain implements FilterChain {
                                            args,
                                            principal);
             } else {
+                // 调用的是service, 并没有doGet, doPost
                 servlet.service(request, response);
             }
         } catch (IOException | ServletException | RuntimeException e) {
